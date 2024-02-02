@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "lsbf-ng-app": {
+    "ldnf-ng-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -57,10 +57,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "lsbf-ng-app:build:production"
+              "buildTarget": "ldnf-ng-app:build:production"
             },
             "development": {
-              "buildTarget": "lsbf-ng-app:build:development"
+              "buildTarget": "ldnf-ng-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -68,7 +68,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "lsbf-ng-app:build"
+            "buildTarget": "ldnf-ng-app:build"
           }
         },
         "test": {
@@ -96,12 +96,12 @@
           },
           "configurations": {
             "production": {
-              "buildTarget": "lsbf-ng-app:build:production",
-              "serveTarget": "lsbf-ng-app:serve:production"
+              "buildTarget": "ldnf-ng-app:build:production",
+              "serveTarget": "ldnf-ng-app:serve:production"
             },
             "development": {
-              "buildTarget": "lsbf-ng-app:build:development",
-              "serveTarget": "lsbf-ng-app:serve:development"
+              "buildTarget": "ldnf-ng-app:build:development",
+              "serveTarget": "ldnf-ng-app:serve:development"
             }
           },
           "defaultConfiguration": "production"

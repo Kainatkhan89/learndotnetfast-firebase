@@ -1,7 +1,7 @@
 {
   "hosting": [
     {
-      "target": "lsbf-ng-app",
+      "target": "ldnf-ng-app",
       "source": ".",
       "frameworksBackend": {}
     }
