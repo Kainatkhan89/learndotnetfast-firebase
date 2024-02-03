@@ -1,10 +1,8 @@
 import {inject, Injectable} from '@angular/core';
 import {LearningPathService} from "../learning-path/learning-path.service";
-import {catchError, map, Observable, of} from "rxjs";
+import {map, Observable} from "rxjs";
 import {ITutorial} from "../../models/learning-path/tutorial.model";
 import {ITutorialPageViewModel} from "../../models/view-models/tutorial-page-view.model";
-import {IProgressCardViewModel} from "../../models/view-models/progress-card-view.model";
-
 
 @Injectable({
   providedIn: 'root'

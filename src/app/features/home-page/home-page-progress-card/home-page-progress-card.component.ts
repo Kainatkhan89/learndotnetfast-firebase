@@ -9,7 +9,6 @@ import {ITutorial} from "../../../core/models/learning-path/tutorial.model";
 import {PercentageFormatPipe} from "../../../core/pipes/percentage-format/percentage-format.pipe";
 import {Subscription} from "rxjs";
 import {LearningProgressService} from "../../../core/services/progress/learning-progress.service";
-import {TutorialService} from "../../../core/services/tutorial/tutorial.service";
 
 @Component({
   selector: 'lsbf-home-page-progress-card',
