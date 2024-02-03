@@ -4,13 +4,11 @@ import {HomePageHeaderComponent} from "./home-page-header/home-page-header.compo
 import {HomePageProgressCardComponent} from "./home-page-progress-card/home-page-progress-card.component";
 import {ILearningPath} from "../../core/models/learning-path/learning-path.model";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
-import {Observable, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 import {LoadingSpinnerComponent} from "../../shared/loading-spinner/loading-spinner.component";
 import {HomePageFooterComponent} from "./home-page-footer/home-page-footer.component";
 import {HomePageLearningPathComponent} from "./home-page-learning-path/home-page-learning-path.component";
 import {AlertPanelComponent} from "../../shared/alert-panel/alert-panel.component";
-import {LearningProgressService} from "../../core/services/progress/learning-progress.service";
-import {ITutorial} from "../../core/models/learning-path/tutorial.model";
 import {LearningPathService} from "../../core/services/learning-path/learning-path.service";
 import {ModalService} from "../../core/services/modal/modal.service";
 import {ResetProgressModalComponent} from "./reset-progress-modal/reset-progress-modal.component";
