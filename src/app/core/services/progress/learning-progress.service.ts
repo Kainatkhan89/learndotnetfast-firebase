@@ -2,8 +2,9 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {UserService} from "../user/user.service";
 import {TutorialService} from "../tutorial/tutorial.service";
-import {BehaviorSubject, catchError, combineLatest, map, Observable, switchMap, take, tap} from "rxjs";
+import {BehaviorSubject, catchError, combineLatest, map, Observable, of, switchMap, take, tap} from "rxjs";
 import {IProgress} from "../../models/progress/progress.model";
+import {IProgressCardViewModel} from "../../models/view-models/progress-card-view.model";
 
 
 @Injectable({
@@ -77,6 +78,10 @@ export class LearningProgressService {
 
   isTutorialCompleted(tutorialId: number): boolean {
     return this._alreadyCompleted(tutorialId);
+  }
+
+  getProgressCardData$(): Observable<IProgressCardViewModel | null> {
+    return of(null);
   }
 
   private _fetchUserProgressData(): void {

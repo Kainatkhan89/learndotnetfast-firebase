@@ -3,7 +3,7 @@ import {LearningPathService} from "../learning-path/learning-path.service";
 import {catchError, map, Observable, of} from "rxjs";
 import {ITutorial} from "../../models/learning-path/tutorial.model";
 import {ITutorialPageViewModel} from "../../models/view-models/tutorial-page-view.model";
-import {IProgressCardView} from "../../models/view-models/progress-card-view.model";
+import {IProgressCardViewModel} from "../../models/view-models/progress-card-view.model";
 
 
 @Injectable({
