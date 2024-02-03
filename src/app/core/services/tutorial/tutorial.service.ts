@@ -24,18 +24,6 @@ export class TutorialService {
     );
   }
 
-  getNextTutorialId$(currentTutorialId: number): Observable<number | null> {
-    return this._getAllLearningPathTutorials$().pipe(
-      map(tutorials => {
-        const currentIndex = tutorials.findIndex(tutorial => tutorial.id === currentTutorialId);
-        if (currentIndex === -1 || currentIndex >= tutorials.length - 1) {
-          return null;
-        }
-        return tutorials[currentIndex + 1].id;
-      })
-    );
-  }
-
   private _getTutorialPageData(forTutorialId: number, allTutorials: ITutorial[]): ITutorialPageViewModel | null {
     const currentTutorial: ITutorial | null = allTutorials.find(tutorial => tutorial.id === forTutorialId) || null;
     if (currentTutorial === null) {
