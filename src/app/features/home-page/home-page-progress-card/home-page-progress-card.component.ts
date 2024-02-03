@@ -29,30 +29,30 @@ export class HomePageProgressCardComponent implements OnInit, OnDestroy {
   readonly CIRCUMFERENCE: number = 2 * 22 / 7 * this.RADIUS;
 
   private _learningProgressService: LearningProgressService = inject(LearningProgressService);
-  private _tutorialService: TutorialService = inject(TutorialService);
 
-  private _progressPercentageSubscription: Subscription | undefined;
+  private _progressCardDataSubscription: Subscription | undefined;
 
   progressPercentage: number | undefined;
-  lastCompletedTutorial: ITutorial | undefined | null;
-  firstTutorial: ITutorial | undefined;
+  lastCompletedTutorial: ITutorial | undefined;
+  tutorialToResumeFrom: ITutorial | undefined;
 
   ngOnInit(): void {
-    // TODO: Setup observable that returns the progress card view model from the progress service
-    this._subscribeToPercentageProgress$();
+    this._subscribeToProgressCardData$();
   }
 
   ngOnDestroy(): void {
-    this._progressPercentageSubscription?.unsubscribe();
+    this._progressCardDataSubscription?.unsubscribe();
   }
 
   get progressStrokeOffset(): number {
     return this.progressPercentage ? this.CIRCUMFERENCE - this.progressPercentage / 100 * this.CIRCUMFERENCE : this.CIRCUMFERENCE;
   }
 
-  private _subscribeToPercentageProgress$(): void {
-    this._progressPercentageSubscription = this._learningProgressService.getPercentageProgress$().subscribe(value => {
-      this.progressPercentage = value;
+  private _subscribeToProgressCardData$(): void {
+    this._progressCardDataSubscription = this._learningProgressService.getProgressCardData$().subscribe(progressCardData => {
+      this.progressPercentage = progressCardData.progressPercentage;
+      this.tutorialToResumeFrom = progressCardData.tutorialToResumeFrom;
+      this.lastCompletedTutorial = progressCardData.lastCompletedTutorial;
     });
   }
 }
