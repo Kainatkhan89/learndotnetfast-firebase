@@ -4,6 +4,8 @@ import {UserService} from "../user/user.service";
 import {TutorialService} from "../tutorial/tutorial.service";
 import {BehaviorSubject, catchError, combineLatest, map, Observable, switchMap, take, tap} from "rxjs";
 import {IProgress} from "../../models/progress/progress.model";
+import {IProgressCardViewModel} from "../../models/view-models/progress-card-view.model";
+import {ITutorial} from "../../models/learning-path/tutorial.model";
 
 
 @Injectable({
@@ -79,6 +81,21 @@ export class LearningProgressService {
     return this._alreadyCompleted(tutorialId);
   }
 
+  getProgressCardData$(): Observable<IProgressCardViewModel> {
+    return combineLatest([ this._tutorialService.getAllTutorials$(), this.getPercentageProgress$(), this.getProgressData$() ]).pipe(
+      map(([allTutorialsOFLearningPath, progressPercentage, progressData]) => {
+        const lastCompletedTutorial: ITutorial | undefined = this._getLastCompletedTutorial(progressData.completedTutorialIds, allTutorialsOFLearningPath);
+        const tutorialToResumeFrom: ITutorial | undefined = this._getTutorialToResumeFrom(lastCompletedTutorial, allTutorialsOFLearningPath);
+
+        return {
+          progressPercentage,
+          lastCompletedTutorial,
+          tutorialToResumeFrom
+        }
+      }
+    ));
+  }
+
   private _fetchUserProgressData(): void {
     this._userService.user$.pipe(
       take(1),
@@ -105,5 +122,24 @@ export class LearningProgressService {
 
   private _alreadyCompleted(tutorialId: number): boolean {
     return this._progressDataSubject.getValue().completedTutorialIds.includes(tutorialId);
+  }
+
+  private _getLastCompletedTutorial(completedTutorialIds: number[], allTutorials: ITutorial[]): ITutorial | undefined {
+    const lastCompletedTutorialId: number | undefined = completedTutorialIds[completedTutorialIds.length - 1];
+    if (lastCompletedTutorialId === undefined) {
+      return undefined;
+    }
+
+    return allTutorials.find(tutorial => tutorial.id === lastCompletedTutorialId);
+  }
+
+  private _getTutorialToResumeFrom(lastCompletedTutorial: ITutorial | undefined, allTutorials: ITutorial[]): ITutorial | undefined {
+    if (lastCompletedTutorial) {
+      const lastCompletedTutorialIndex = allTutorials.findIndex(tutorial => tutorial.id === lastCompletedTutorial.id);
+      return allTutorials[lastCompletedTutorialIndex + 1];
+    } else {
+      const firstTutorialOfLearningPath: ITutorial = allTutorials[0];
+      return firstTutorialOfLearningPath ? firstTutorialOfLearningPath : undefined;
+    }
   }
 }
