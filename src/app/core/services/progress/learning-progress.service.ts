@@ -80,8 +80,8 @@ export class LearningProgressService {
     return this._alreadyCompleted(tutorialId);
   }
 
-  getProgressCardData$(): Observable<IProgressCardViewModel | null> {
-    return of(null);
+  getProgressCardData$(): Observable<IProgressCardViewModel> {
+
   }
 
   private _fetchUserProgressData(): void {
