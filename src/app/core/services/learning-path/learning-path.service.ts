@@ -9,7 +9,7 @@ import { LearningPathMapperService } from '../mapper/learning-path-mapper.servic
   providedIn: 'root'
 })
 export class LearningPathService {
-  private readonly _learningPathApi: string = 'http://localhost:3000/learning-path';
+  private readonly _learningPathApi: string = 'https://express-service-cx6xmx5g4q-uc.a.run.app/learning-path';
 
   private _httpClient: HttpClient = inject(HttpClient);
   private _learningPathMapperService: LearningPathMapperService = inject(LearningPathMapperService);
