@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {map, Observable, of, tap} from "rxjs";
 import {ILearningPath} from "../../models/learning-path/learning-path.model";
 import { ILearningPathDTO } from '../../models/learning-path/learning-path-dto.model';
-import { ModuleStyles } from '../../models/learning-path/module.model';
 import { LearningPathMapperService } from '../mapper/learning-path-mapper.service';
 
 @Injectable({
