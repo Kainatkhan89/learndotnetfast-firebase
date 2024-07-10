@@ -10,10 +10,10 @@ import { LearningPathMapperService } from '../mapper/learning-path-mapper.servic
   providedIn: 'root'
 })
 export class LearningPathService {
-  private readonly _learningPathApi: string = 'https://localhost:7018/api/course-modules/with-tutorials';
+  private readonly _learningPathApi: string = 'http://localhost:3000/learning-path';
 
   private _httpClient: HttpClient = inject(HttpClient);
-  private _learningPathMapperService: LearningPathMapperService = inject(LearningPathMapperService); 
+  private _learningPathMapperService: LearningPathMapperService = inject(LearningPathMapperService);
   private _cachedLearningPathData: ILearningPath | undefined;
 
   constructor() { }
@@ -28,7 +28,7 @@ export class LearningPathService {
 
   private _fetchLearningPath$(): Observable<ILearningPath> {
     return this._httpClient.get<ILearningPathDTO>(this._learningPathApi).pipe(
-      map(dto => this._learningPathMapperService.transformDtoToLearningPath(dto)), 
+      map(dto => this._learningPathMapperService.transformDtoToLearningPath(dto)),
       tap(value => {
         console.log(value)
         if (!this._cachedLearningPathData) {
@@ -39,7 +39,7 @@ export class LearningPathService {
       }),
     );
   }
- 
+
 }
 
 
