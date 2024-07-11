@@ -72,9 +72,9 @@ export class LearningProgressService {
     const resetProgress: IProgress = {
       ...this.currentProgress,
       completedTutorialIds: []
-    }
+    };
 
-    this._progressDataSubject.next(resetProgress);
+    this._callUpdateProgressAPI(resetProgress);
   }
 
   isTutorialCompleted(tutorialId: number): boolean {
