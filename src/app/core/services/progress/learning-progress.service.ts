@@ -6,13 +6,14 @@ import {BehaviorSubject, catchError, combineLatest, from, map, Observable, switc
 import {IProgress} from "../../models/progress/progress.model";
 import {IProgressCardViewModel} from "../../models/view-models/progress-card-view.model";
 import {ITutorial} from "../../models/learning-path/tutorial.model";
+import {environment} from "../../../../environments/environment";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class LearningProgressService {
-  private readonly _progressDataApi: string = 'http://localhost:3000/progress';
+  private readonly _progressDataApi: string = `${environment.apiUrl}/progress`;
   private readonly _preInitializationProgressData: IProgress = { userId: '', completedTutorialIds: [] };
 
   private _httpClient: HttpClient = inject(HttpClient);

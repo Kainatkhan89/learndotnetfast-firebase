@@ -5,13 +5,13 @@ import {ILearningPath} from "../../models/learning-path/learning-path.model";
 import { ILearningPathDTO } from '../../models/learning-path/learning-path-dto.model';
 import { LearningPathMapperService } from '../mapper/learning-path-mapper.service';
 import {UserService} from "../user/user.service";
+import {environment} from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LearningPathService {
-  private readonly _learningPathApi: string = 'https://express-service-cx6xmx5g4q-uc.a.run.app/learning-path';
-  // private readonly _learningPathApi: string = 'http://localhost:3000/learning-path';
+  private readonly _learningPathApi: string = `${environment.apiUrl}/learning-path`;
 
   private _httpClient: HttpClient = inject(HttpClient);
   private _userService: UserService = inject(UserService);
